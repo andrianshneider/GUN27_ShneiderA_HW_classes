@@ -3,8 +3,8 @@ namespace HW_classes
 {
     public class Helm
     {
-        public readonly string Name;
-        public float Armor;
+        public string name { get; }
+        public float armor;
 
         public Helm() : this("Helm")
         {
@@ -12,32 +12,32 @@ namespace HW_classes
 
         public Helm(string ArgName)
         {
-            Name = ArgName;
+            name = ArgName;
         }
 
-        public float ArmorProperty
+        public float Armor
         {
             get
             {
-                return Armor;
+                return armor;
             }
 
             set
             {
                 if (value>1f)
                 {
-                    Armor = 1f;
-                    Console.WriteLine($"Некорректное значение! Значение брони шлема установлено на {Armor}");
+                    armor = 1f;
+                    Console.WriteLine($"Некорректное значение! Значение брони шлема установлено на {armor}");
                 }
                 else
                 {
                     if (value < 0f)
                     {
-                        Armor = 0f;
-                        Console.WriteLine($"Некорректное значение! Значение брони шлема установлено на {Armor}");
+                        armor = 0f;
+                        Console.WriteLine($"Некорректное значение! Значение брони шлема установлено на {armor}");
                     }
                     else
-                    { Armor = value; }
+                    { armor = value; }
                 }
             }
         }
@@ -45,8 +45,8 @@ namespace HW_classes
 
     public class Shell
     {
-        public readonly string Name;
-        public float Armor;
+        public string name { get; }
+        public float armor;
 
         public Shell() : this("Shell")
         {
@@ -54,32 +54,32 @@ namespace HW_classes
 
         public Shell(string ArgName)
         {
-            Name = ArgName;
+            name = ArgName;
         }
 
-        public float ArmorProperty
+        public float Armor
         {
             get
             {
-                return Armor;
+                return armor;
             }
 
             set
             {
                 if (value > 1f)
                 {
-                    Armor = 1f;
-                    Console.WriteLine($"Некорректное значение! Значение брони кирасы установлено на {Armor}");
+                    armor = 1f;
+                    Console.WriteLine($"Некорректное значение! Значение брони кирасы установлено на {armor}");
                 }
                 else
                 {
                     if (value < 0f)
                     {
-                        Armor = 0f;
-                        Console.WriteLine($"Некорректное значение! Значение брони кирасы установлено на {Armor}");
+                        armor = 0f;
+                        Console.WriteLine($"Некорректное значение! Значение брони кирасы установлено на {armor}");
                     }
                     else
-                    { Armor = value; }
+                    { armor = value; }
                 }
             }
         }
@@ -87,8 +87,8 @@ namespace HW_classes
 
     public class Boots
     {
-        public readonly string Name;
-        public float Armor;
+        public string name { get; }
+        public float armor;
 
         public Boots() : this("Boots")
         {
@@ -96,32 +96,32 @@ namespace HW_classes
 
         public Boots(string ArgName)
         {
-            Name = ArgName;
+            name = ArgName;
         }
 
-        public float ArmorProperty
+        public float Armor
         {
             get
             {
-                return Armor;
+                return armor;
             }
 
             set
             {
                 if (value > 1f)
                 {
-                    Armor = 1f;
-                    Console.WriteLine($"Некорректное значение! Значение брони сапог установлено на {Armor}");
+                    armor = 1f;
+                    Console.WriteLine($"Некорректное значение! Значение брони сапог установлено на {armor}");
                 }
                 else
                 {
                     if (value < 0f)
                     {
-                        Armor = 0f;
-                        Console.WriteLine($"Некорректное значение! Значение брони сапог установлено на {Armor}");
+                        armor = 0f;
+                        Console.WriteLine($"Некорректное значение! Значение брони сапог установлено на {armor}");
                     }
                     else
-                    { Armor = value; }
+                    { armor = value; }
                 }
             }
         }

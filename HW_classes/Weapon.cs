@@ -3,33 +3,58 @@ namespace HW_classes
 {
 	public class Weapon
 	{
-		public readonly string Name;
-		public float MinDamage { get; private set; }
-		public float MaxDamage { get; private set; }
-		private float Buffer;
+		public float minDamage { get; private set; }
+		public float maxDamage { get; private set; }
+		private float buffer;
+		public float damage;
+
+        public string name { get; }
 
         public Weapon(string ArgName)
 		{
-            Name = ArgName;
-        }
+			name = ArgName;
+		}
 
 
-        public Weapon(string ArgName, float ArgMinDamage, float ArgMaxDamage) : this (ArgName)
+		public Weapon(string ArgName, float ArgMinDamage, float ArgMaxDamage) : this(ArgName)
 		{
-			MinDamage = ArgMinDamage;
-			MaxDamage = ArgMaxDamage;
+			minDamage = ArgMinDamage;
+			maxDamage = ArgMaxDamage;
+		}
 
-			public float SetDamageParams
+			
+		public float SetDamageParams
+		{
+			set
 			{
-				set
+				if (minDamage > maxDamage)
 				{
-				if (MinDamage>MaxDamage)
-				{
-					MinDamage = 0;
+					buffer = minDamage;
+					minDamage = maxDamage;
+					maxDamage = buffer;
+
+					Console.WriteLine("Некорректные значения!");
 				}
+
+				if (minDamage < 1f)
+				{
+					minDamage = 1f;
+					Console.WriteLine("Форсированная установка значения миниального урона!");
+				}
+
+				if (maxDamage <= 1f)
+				{
+					maxDamage = 10f;
+					Console.WriteLine("Форсированная установка значения максимального урона!");
 				}
 			}
-        }
-    }
+
+		}
+
+		public float GetDamage
+		{
+			get { return (maxDamage + minDamage) / 2; }
+		}
+	}
 }
 
