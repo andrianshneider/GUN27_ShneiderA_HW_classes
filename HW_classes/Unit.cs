@@ -5,10 +5,12 @@ namespace HW_classes
 	{
 		private float health;
 		private float basedamage = 5;
-		private string currentWeapon;
-        private string currentHelm;
-        private string currentShell;
-        private string currentBoots;
+        private float damage;
+        private bool isWeaponEmpty = true;
+        private float armor;
+        private float helmArmor;
+        private float shellArmor;
+        private float bootsArmor;
 
         public string Name { get; }
 
@@ -17,37 +19,67 @@ namespace HW_classes
 			get { return health; }
 		}
 
-        public float Damage (Weapon weapon)
+        public Unit() : this("Unknown Unit")
         {
-			if (String.IsNullOrEmpty(weapon.name))
-			{
-                return basedamage;
+
+        }
+
+        public Unit(string ArgName)
+        {
+            if (ArgName != "")
+            {
+                Name = ArgName;
             }
-			else
-			{
-                return basedamage + weapon.damage;
+            else
+            {
+                Name = "Unknown Unit";
             }
-		}
 
-		private float GetArmor()
-		{
-            var Helm = new HW_classes.Helm();
-            var Shell = new HW_classes.Shell();
-            var Boots = new HW_classes.Boots();
-			return Helm.armor + Shell.armor + Boots.armor;
-		}
+        }
 
+        public Unit(string ArgName, float ArgHealth)
+        {
+            if (ArgName != "")
+            {
+                Name = ArgName;
+            }
+            else
+            {
+                Name = "Unknown Unit";
+            }
 
+            health = ArgHealth;
+        }
+
+        public float Damage
+        {
+            get { return damage; }
+
+            set
+            {
+                if (isWeaponEmpty)
+                {
+                    damage = basedamage;
+                }
+                else
+                {
+                    damage = basedamage+value;
+                }
+            }
+        }
+
+ 
         public float Armor 
         {
-			get { return GetArmor(); }
+            get { return (float)Math.Round(armor, 2); }
+
 			set
 			{
-				if (value < 0)
-					value = 0;
-				else
-					value = Math.Min(value, 1);
-			}
+                if (value < 0)
+                    armor = 0;
+                else
+                    armor = Math.Min(value, 1);
+            }
         }
 
 		public float RealHealth
@@ -57,7 +89,7 @@ namespace HW_classes
 
 		public bool SetDamage
 		{
-			get
+			get 
 			{
 				if (health<=0f)
 				{ return true; }
@@ -70,44 +102,35 @@ namespace HW_classes
 			}
 		}
 
-		public void EquipWeapon(Weapon weapon1)
-		{
-			currentWeapon = weapon1.name;
-		}
-
-        public void EquipHelm(Helm helm)
+        public void EquipWeapon(float argMinDamage, float argMaxDamage)
         {
-            currentHelm = helm.name;
+            var currentWeapon = new HW_classes.Weapon("Weapon", argMinDamage, argMaxDamage);
+            isWeaponEmpty = false;
+            Damage = currentWeapon.damage;
         }
 
-        public void EquipShell(Shell shell)
+        public void EquipHelm(string argName, float argArmor)
         {
-            currentShell = shell.name;
+            var currentHelm = new HW_classes.Helm(argName, argArmor);
+            helmArmor = currentHelm.Armor;
+            Armor = helmArmor + shellArmor + bootsArmor;
         }
 
-        public void EquipBoots(Boots boots)
+        public void EquipShell(string argName, float argArmor)
         {
-            currentBoots = boots.name;
+            var currentShell = new HW_classes.Shell(argName, argArmor);
+            shellArmor = currentShell.Armor;
+            Armor = helmArmor + shellArmor + bootsArmor;
         }
 
-        public Unit(): this("Unknown Unit")
-		{
-
-		}
-
-		public Unit(string ArgName)
-		{
-			if (ArgName != "")
-			{
-				Name = ArgName;
-			}
-			else
-			{
-				Name = "Unknown Unit";
-			}
-						
+        public void EquipBoots(string argName, float argArmor)
+        {
+            var currentBoots = new HW_classes.Boots(argName, argArmor);
+            bootsArmor = currentBoots.Armor;
+            Armor = helmArmor + shellArmor + bootsArmor;
         }
 
+        				
 	}
 }
 

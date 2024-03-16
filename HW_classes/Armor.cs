@@ -10,9 +10,15 @@ namespace HW_classes
         {
         }
 
-        public Helm(string ArgName)
+        public Helm(string argName)
         {
-            name = ArgName;
+            name = argName;
+        }
+
+        public Helm(string argName, float argArmor)
+        {
+            name = argName;
+            armor = argArmor;
         }
 
         public float Armor
@@ -52,9 +58,15 @@ namespace HW_classes
         {
         }
 
-        public Shell(string ArgName)
+        public Shell(string argName)
         {
-            name = ArgName;
+            name = argName;
+        }
+
+        public Shell(string argName, float argArmor)
+        {
+            name = argName;
+            armor = argArmor;
         }
 
         public float Armor
@@ -94,9 +106,15 @@ namespace HW_classes
         {
         }
 
-        public Boots(string ArgName)
+        public Boots(string argName)
         {
-            name = ArgName;
+            name = argName;
+        }
+
+        public Boots(string argName, float argArmor)
+        {
+            name = argName;
+            armor = argArmor;
         }
 
         public float Armor

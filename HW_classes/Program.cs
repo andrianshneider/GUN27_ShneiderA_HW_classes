@@ -11,7 +11,7 @@ internal class Program
         float bootsArmor;
         float minDamage;
         float maxDamage;
-
+        
         Console.WriteLine("Подготовка к бою:");
         Console.WriteLine("Введите имя бойца:");
 
@@ -98,15 +98,18 @@ internal class Program
 
         maxDamage = number;
 
+        var Unit = new HW_classes.Unit(name, startHealth);
 
-        var Unit = new HW_classes.Unit(name);
-        Unit.EquipBoots();
+        Unit.EquipWeapon(minDamage, maxDamage);
+        Unit.EquipHelm("Helm", helmArmor);
+        Unit.EquipShell("Shell", shellArmor);
+        Unit.EquipBoots("Boots", bootsArmor);
 
-        var Damage = new HW_classes.Weapon("WeaponName", 100, 20);
         Console.WriteLine("_________________");
         Console.WriteLine("Профиль вашего бойца:");
         Console.WriteLine($"ИМЯ: {Unit.Name}");
         Console.WriteLine($"ОБЩИЙ ПОКАЗАТЕЛЬ БРОНИ: {Unit.Armor}");
+        Console.WriteLine($"ОБЩИЙ УРОН ОРУЖИЯ: {Unit.Damage}");
         Console.WriteLine($"ФАКТИЧЕСКОЕ ЗНАЧЕНИЕ ЗДОРОВЬЯ: {Unit.RealHealth}");
     }
 }

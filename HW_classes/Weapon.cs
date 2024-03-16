@@ -3,57 +3,57 @@ namespace HW_classes
 {
 	public class Weapon
 	{
-		public float minDamage { get; private set; }
-		public float maxDamage { get; private set; }
-		private float buffer;
+		public float MinDamage { get; private set; }
+		public float MaxDamage { get; private set; }
+		
 		public float damage;
 
-        public string name { get; }
+        public string Name { get; }
 
-        public Weapon(string ArgName)
+        public Weapon(string argName)
 		{
-			name = ArgName;
+			Name = argName;
 		}
 
 
-		public Weapon(string ArgName, float ArgMinDamage, float ArgMaxDamage) : this(ArgName)
-		{
-			minDamage = ArgMinDamage;
-			maxDamage = ArgMaxDamage;
+        public Weapon(string argName, float argMinDamage, float argMaxDamage)
+        {
+            Name = argName;
+			SetDamageParams(argMinDamage, argMaxDamage);
 		}
 
-			
-		public float SetDamageParams
+
+        public void SetDamageParams(float argMinDamage, float argMaxDamage)
 		{
-			set
+			MinDamage = argMinDamage;
+			MaxDamage = argMaxDamage;
+
+			if (argMinDamage > argMaxDamage)
 			{
-				if (minDamage > maxDamage)
-				{
-					buffer = minDamage;
-					minDamage = maxDamage;
-					maxDamage = buffer;
+				MinDamage = argMaxDamage;
+				MaxDamage = argMinDamage;
 
-					Console.WriteLine("Некорректные значения!");
-				}
-
-				if (minDamage < 1f)
-				{
-					minDamage = 1f;
-					Console.WriteLine("Форсированная установка значения миниального урона!");
-				}
-
-				if (maxDamage <= 1f)
-				{
-					maxDamage = 10f;
-					Console.WriteLine("Форсированная установка значения максимального урона!");
-				}
+				Console.WriteLine("Некорректные значения!");
 			}
 
+			if (argMinDamage < 1f)
+			{
+				MinDamage = 1f;
+				Console.WriteLine("Форсированная установка значения миниального урона!");
+			}
+
+			if (argMaxDamage <= 1f)
+			{
+				MaxDamage = 10f;
+				Console.WriteLine("Форсированная установка значения максимального урона!");
+			}
+
+			damage = GetDamage();
 		}
 
-		public float GetDamage
+		public float GetDamage()
 		{
-			get { return (maxDamage + minDamage) / 2; }
+			return (MaxDamage + MinDamage) / 2;
 		}
 	}
 }
