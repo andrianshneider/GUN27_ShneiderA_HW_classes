@@ -26,7 +26,7 @@ namespace HW_classes
 
         public Unit(string ArgName)
         {
-            if (ArgName != "")
+            if (String.IsNullOrWhiteSpace(ArgName))
             {
                 Name = ArgName;
             }
@@ -39,7 +39,7 @@ namespace HW_classes
 
         public Unit(string ArgName, float ArgHealth)
         {
-            if (ArgName != "")
+            if (String.IsNullOrWhiteSpace(ArgName))
             {
                 Name = ArgName;
             }
